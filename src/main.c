@@ -1,5 +1,8 @@
 //INCLUSIONS
-#include "opengl_functions.h"
+#include "display.h"
+#include "mouse.h"
+#include "keyboard.h"
+#include "camera.h"
 
 //MAIN DU PROJET DE SAI
 int main(int argc, char const *argv[]){

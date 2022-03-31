@@ -1,0 +1,4 @@
+//CONSTANTES
+#define HEIGTH 800
+#define WIDTH 800
+#define TO_RADIAN 3.14/180.0
