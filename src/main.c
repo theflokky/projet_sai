@@ -18,9 +18,11 @@ int main(int argc, char const *argv[]){
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LEQUAL);
     glutSetCursor(GLUT_CURSOR_NONE);
+    
 
     //Postionne le pointeur de souris au milieu de la fenetre
     glutWarpPointer(800/2, 800/2);
+    glClearColor(0.4667, 0.7098, 0.9961, 1);
 
     //Definition des fonctions pour OpenGL
     glutDisplayFunc(display);

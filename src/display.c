@@ -25,11 +25,16 @@ void display(){
 
     glBegin(GL_QUADS);
         //Generation d'un sol de test
-        glColor3f(0.9, 0.9, 0.9);
-        glVertex3f(-10, 0, -10);
-        glVertex3f(-10, 0, 10);
-        glVertex3f(10, 0, 10);
-        glVertex3f(10, 0, -10);
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex3f(-100, 0, -100);
+        glVertex3f(-100, 0, 100);
+        glVertex3f(100, 0, 100);
+        glVertex3f(100, 0, -100);
     glEnd();
+
+    building1(0, 0, 30);
+    building1(15, 15, 60);
+    building1(60, 60, 40);
+
     glutSwapBuffers();
 }
