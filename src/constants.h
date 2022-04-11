@@ -2,3 +2,7 @@
 #define HEIGTH 800
 #define WIDTH 800
 #define TO_RADIAN 3.14/180.0
+#define NB_OBJETS_MAX 50
+#define NB_ILES_MAX 10
+
+#define HAUTEUR_ILE 10

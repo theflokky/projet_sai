@@ -2,7 +2,6 @@
 #include "display.h"
 #include "mouse.h"
 #include "keyboard.h"
-#include "camera.h"
 
 //MAIN DU PROJET DE SAI
 int main(int argc, char const *argv[]){
@@ -31,6 +30,10 @@ int main(int argc, char const *argv[]){
     glutTimerFunc(0,timer,0);
     glutPassiveMotionFunc(passive_motion);
 
+    //GENERATION
+    generer_ile(0, 0, 0, 100, 100, 0);
+    generer_ile(-10, 0, -10, 40, 40, 0);
+    srand(time(NULL));
     glutMainLoop();
 
 

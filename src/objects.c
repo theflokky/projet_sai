@@ -34,3 +34,8 @@ void building1(float x, float z, float heigth){
         glVertex3f(x+10, 0, z);
     glEnd();
 }
+
+//Fonction qui dessine un arbre 
+void tree(float x, float y){
+    
+}
