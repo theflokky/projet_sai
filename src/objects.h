@@ -30,4 +30,4 @@ typedef struct Ile{
 }ile;
 
 //FONCTIONS
-void building1(float x, float z, float heigth);
+void building1(float x, float y, float z, float heigth);

@@ -32,7 +32,7 @@ int main(int argc, char const *argv[]){
 
     //GENERATION
     generer_ile(0, 0, 0, 100, 100, 0);
-    generer_ile(-10, 0, -10, 40, 40, 0);
+    generer_ile(-102, 0, 0, 100, 100, 0);
     srand(time(NULL));
     glutMainLoop();
 

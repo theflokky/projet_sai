@@ -10,10 +10,11 @@ extern ile tab_ile[];
 extern int nb_iles_generes;
 
 //FONCTIONS
-
+//Affichage building
 
 //Fonction qui affiche une ile complete PROVISOIRE
 void affichage_ile(int num_ile){
+    int i;
     float x = tab_ile[num_ile].objets[0].x;
     float y = tab_ile[num_ile].objets[0].y;
     float z =tab_ile[num_ile].objets[0].z;
@@ -29,6 +30,13 @@ void affichage_ile(int num_ile){
         glVertex3f(x+longueur, y, z+largeur);
         glVertex3f(x, y, z+largeur);
     glEnd();
+
+    for(i=1; i < tab_ile[num_ile].nb_objets; i++){
+        float x = tab_ile[num_ile].objets[i].x;
+        float y = tab_ile[num_ile].objets[i].y;
+        float z =tab_ile[num_ile].objets[i].z;
+        building1(x, y, z, 50);
+    }
 }
 
 //Fonction d'affichage de OpenGL

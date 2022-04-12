@@ -3,7 +3,7 @@
 
 //FONCTIONS
 //Fonction qui dessine un immeuble de taille 10 * 10 * hauteur a la coordonne x, y
-void building1(float x, float z, float heigth){
+void building1(float x, float y, float z, float heigth){
     glBegin(GL_QUADS);
         glColor3f(0.3, 0.2, 0.1);
         //Generation de la face du dessus
@@ -37,5 +37,5 @@ void building1(float x, float z, float heigth){
 
 //Fonction qui dessine un arbre 
 void tree(float x, float y){
-    
+
 }
