@@ -11,12 +11,13 @@ objet generer_immeuble(int num_ile){
     objet immeuble;
 
     immeuble.type = 2;
-    immeuble.x = tab_ile[num_ile].objets[0].x + rand()%90 + 1;
+    immeuble.x = tab_ile[num_ile].objets[0].x + rand()%90;
     immeuble.y = tab_ile[num_ile].objets[0].y;
-    immeuble.z = tab_ile[num_ile].objets[0].z + rand()%90 + 1;
+    immeuble.z = tab_ile[num_ile].objets[0].z + rand()%90;
     immeuble.hauteur = 50;
     immeuble.largeur = 10;
     immeuble.longueur = 10; 
+
     
     return immeuble;
 }
@@ -138,11 +139,13 @@ void generer_ville(int num_ile){
         
         while(conflit_generation_ville(immeuble_courant, num_ile) != 1){
             immeuble_courant = generer_immeuble(num_ile);
+            //printf("IMMEUBLE AVANT TAB: %f, %f\n", immeuble_courant.x, immeuble_courant.z);
         }
         
         
         tab_ile[num_ile].objets[i] = immeuble_courant;
         tab_ile[num_ile].nb_objets++;
+        //printf("IMMEUBLE APRES TAB: %f, %f\n" ,tab_ile[num_ile].objets[i].x, tab_ile[num_ile].objets[i].z);
     }
 }
 

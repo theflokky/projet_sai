@@ -22,6 +22,10 @@ void affichage_ile(int num_ile){
     float largeur =tab_ile[num_ile].objets[0].largeur;
     float hauteur =tab_ile[num_ile].objets[0].hauteur;
 
+    printf("ILE AFFICHAGE X: %f, %f\n", x, longueur);
+    printf("ILE AFFICHAGE Z: %f, %f\n", z, largeur);
+    printf("ILE AFFICHAGE Y: %f, %f\n", y, hauteur);
+
     glBegin(GL_QUADS);
         //Generation d'un sol de test
         glColor3f(0.5, 0.5, 0.5);
@@ -67,6 +71,7 @@ void affichage_ile(int num_ile){
         float x = tab_ile[num_ile].objets[i].x;
         float y = tab_ile[num_ile].objets[i].y;
         float z =tab_ile[num_ile].objets[i].z;
+        //fprintf(stdout, "BATIMENT_AFFICHAGE : %f, %f\n", x, z);
         building1(x, y, z, 50);
     }
 }
@@ -77,19 +82,24 @@ void display(){
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(45, 1, 1, 400);
+    //glFrustum(0, 0,  0 , 0, 1, 400);
+        gluLookAt(camera_x, camera_y, camera_z,
+             camera_x + pt_regarde[0], camera_y + pt_regarde[1], camera_z + pt_regarde[2],
+              0, 1, 0);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    gluLookAt(camera_x, camera_y, camera_z,
+    /*gluLookAt(camera_x, camera_y, camera_z,
              camera_x + pt_regarde[0], camera_y + pt_regarde[1], camera_z + pt_regarde[2],
-              0, 1, 0);
-
-    camera();
+              0, 1, 0);*/
 
     for(int i = 0; i< NB_ILES_MAX; i++){
         affichage_ile(i);
     }
+
+
+    camera();
 
     glutSwapBuffers();
 }
