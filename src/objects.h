@@ -31,3 +31,4 @@ typedef struct Ile{
 
 //FONCTIONS
 void building1(float x, float y, float z, float heigth);
+void teleporteur(float x, float y, float z);

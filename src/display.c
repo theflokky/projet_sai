@@ -61,7 +61,9 @@ void affichage_ile(int num_ile){
         glVertex3f(x + longueur, y, z+largeur);
     glEnd();
 
-    for(i=1; i < tab_ile[num_ile].nb_objets; i++){
+    teleporteur(tab_ile[num_ile].objets[1].x, tab_ile[num_ile].objets[1].y, tab_ile[num_ile].objets[1].z);
+
+    for(i=2; i < tab_ile[num_ile].nb_objets; i++){
         float x = tab_ile[num_ile].objets[i].x;
         float y = tab_ile[num_ile].objets[i].y;
         float z =tab_ile[num_ile].objets[i].z;

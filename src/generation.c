@@ -21,6 +21,20 @@ objet generer_immeuble(int num_ile){
     return immeuble;
 }
 
+objet generer_teleporteur(int num_ile){
+    objet teleporteur;
+
+    teleporteur.type = 3;
+    teleporteur.x = tab_ile[num_ile].objets[0].x + tab_ile[num_ile].objets[0].largeur /2;
+    teleporteur.y = tab_ile[num_ile].objets[0].y;
+    teleporteur.z = tab_ile[num_ile].objets[0].z + tab_ile[num_ile].objets[0].longueur /2;
+    teleporteur.hauteur = 10;
+    teleporteur.largeur = 10;
+    teleporteur.longueur = 10; 
+    
+    return teleporteur;
+}
+
 //Fonction qui verifie si il y a collision du batiment courant avec les autres batiments de l'ile renvoie true pas co
 int conflit_generation_ville(objet o, int num_ile){
     int i;
@@ -113,13 +127,18 @@ void generer_ville(int num_ile){
     //On tire aléatoirement le nombre de building (Bornes a confirmer) POUR LE MOMENT FIXE
     nb_immeubles = 10;
 
+    immeuble_courant = generer_teleporteur(num_ile);
+    tab_ile[num_ile].objets[1] = immeuble_courant;
+    tab_ile[num_ile].nb_objets++;
+    
+
     //Boucle for pour la generation des immeubles
-    for(i = 1; i < nb_immeubles; i++){
+    for(i = 2; i < nb_immeubles; i++){
         //Verif Generation Collision
-        do{
+        
+        while(conflit_generation_ville(immeuble_courant, num_ile) != 1){
             immeuble_courant = generer_immeuble(num_ile);
         }
-        while(conflit_generation_ville(immeuble_courant, num_ile) != 1);
         
         
         tab_ile[num_ile].objets[i] = immeuble_courant;
