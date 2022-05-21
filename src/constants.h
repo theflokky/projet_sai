@@ -3,6 +3,12 @@
 #define WIDTH 800
 #define TO_RADIAN 3.14/180.0
 #define NB_OBJETS_MAX 50
-#define NB_ILES_MAX 10
+#define NB_ILES_MAX 3
 
-#define HAUTEUR_ILE 10
+#define LARGEUR_MONDE 600
+#define LONGUEUR_MONDE 600
+#define HAUTEUR_MONDE 1000
+
+#define LARGEUR_ILE 100
+#define LONGUEUR_ILE 100
+#define HAUTEUR_ILE 100

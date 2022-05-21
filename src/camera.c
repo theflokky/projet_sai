@@ -6,6 +6,8 @@ float camera_x = 0;
 float camera_y = 2;
 float camera_z = 0;
 
+
+
 //Vercteur directo
 float direction_x = 0;
 float direction_y = 0;

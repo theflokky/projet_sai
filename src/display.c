@@ -29,6 +29,36 @@ void affichage_ile(int num_ile){
         glVertex3f(x+longueur, y, z);
         glVertex3f(x+longueur, y, z+largeur);
         glVertex3f(x, y, z+largeur);
+
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex3f(x , y-10, z);
+        glVertex3f(x+longueur, y-10, z);
+        glVertex3f(x+longueur, y-10, z+largeur);
+        glVertex3f(x, y-10, z+largeur);
+
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex3f(x , y, z);
+        glVertex3f(x , y-10, z);
+        glVertex3f(x + longueur , y-10, z);
+        glVertex3f(x + longueur, y, z);
+
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex3f(x , y, z);
+        glVertex3f(x , y-10, z);
+        glVertex3f(x  , y-10, z + largeur);
+        glVertex3f(x , y, z +largeur);
+
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex3f(x +longueur, y, z);
+        glVertex3f(x +longueur, y-10, z);
+        glVertex3f(x + longueur , y-10, z+largeur);
+        glVertex3f(x + longueur, y, z+largeur);
+
+        glColor3f(0.5, 0.5, 0.5);
+        glVertex3f(x , y, z+largeur);
+        glVertex3f(x , y-10, z+largeur);
+        glVertex3f(x + longueur , y-10, z+largeur);
+        glVertex3f(x + longueur, y, z+largeur);
     glEnd();
 
     for(i=1; i < tab_ile[num_ile].nb_objets; i++){
@@ -44,19 +74,20 @@ void display(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45, 1, 1, 100);
+    gluPerspective(45, 1, 1, 400);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    
+
     gluLookAt(camera_x, camera_y, camera_z,
              camera_x + pt_regarde[0], camera_y + pt_regarde[1], camera_z + pt_regarde[2],
               0, 1, 0);
 
     camera();
 
-    affichage_ile(0);
-    affichage_ile(1);
+    for(int i = 0; i< NB_ILES_MAX; i++){
+        affichage_ile(i);
+    }
 
     glutSwapBuffers();
 }

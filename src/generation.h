@@ -1,4 +1,6 @@
 #include "objects.h"
 
+//Tableau contenant toutes les iles
+
 //FONCTIONS
-void generer_ile(float x, float y, float z, float largeur, float longueur, float hauteur);
+void generer_monde();

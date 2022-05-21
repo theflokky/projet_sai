@@ -31,8 +31,7 @@ int main(int argc, char const *argv[]){
     glutPassiveMotionFunc(passive_motion);
 
     //GENERATION
-    generer_ile(0, 0, 0, 100, 100, 0);
-    generer_ile(-102, 0, 0, 100, 100, 0);
+    generer_monde();
     srand(time(NULL));
     glutMainLoop();
 

@@ -26,6 +26,11 @@ void keyboard(unsigned char key, int x, int y){
             direction_bool[3] = 1; 
         break;
 
+        //On quitte le jeu
+        case 'p':
+            exit(0);
+        break;
+
         default:
         break;
     }
