@@ -3,6 +3,8 @@
 #include "mouse.h"
 #include "keyboard.h"
 
+arbre_octal A;
+
 //MAIN DU PROJET DE SAI
 int main(int argc, char const *argv[]){
     //Initialisation de Glut
@@ -34,8 +36,11 @@ int main(int argc, char const *argv[]){
 
     //GENERATION
     generer_monde();
-    glutMainLoop();
+    A = genere_arbre_octal(4, 0, HAUTEUR_MONDE, 0, LARGEUR_MONDE, 0, LONGUEUR_MONDE);
 
+    fprintf(stderr, "Arbre creer et initialise\n");
+    
+    glutMainLoop();
 
     return 0;
 }

@@ -7,6 +7,8 @@ float camera_x = 4;
 float camera_y = 2;
 float camera_z = 4;
 
+int teleporteur_ouvert = 0;
+
 
 //Vercteur directo
 float direction_x = 0;
@@ -77,9 +79,21 @@ int colision_teleporteur(int x, int z){
     return 0;
 }
 
+int colision_cible(int x, int z){
+    if(x +2 > tab_ile[ile_courante].objets[2].x
+         && z +2 > tab_ile[ile_courante].objets[2].z
+         && x < tab_ile[ile_courante].objets[2].x + 12 
+         && z < tab_ile[ile_courante].objets[2].z +12){
+        fprintf(stdout, "\nCible Trouvé\n");
+        return 1;
+    }
+    return 0;
+}
+
 void teleportation(){
     if(ile_courante == NB_ILES_MAX){
-        ile_courante = 0;
+        fprintf(stdout, "\n VICTOIRE GROS BG\n");
+        exit(0);
     }
     else{
         ile_courante++;
@@ -99,12 +113,18 @@ void camera(){
             if(colision_objet(camera_x + pt_regarde[0]/10, camera_z + pt_regarde[2]/10) == 0){
                 camera_x += pt_regarde[0]/10;
                 camera_z += pt_regarde[2]/10;
-                fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
+                //fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
+        }
+        if(colision_cible(camera_x + pt_regarde[0]/10, camera_z + pt_regarde[2]/10) == 1){
+            teleporteur_ouvert = 1;
         }
         if(colision_teleporteur(camera_x + pt_regarde[0]/10, camera_z + pt_regarde[2]/10) == 1){
             //exit(0);
-            teleportation();
+            if(teleporteur_ouvert){
+                teleportation();
+                teleporteur_ouvert = 0;
+            }
         }
     }
     if(direction_bool[1]){
@@ -112,12 +132,18 @@ void camera(){
             if(colision_objet(camera_x - pt_regarde[0]/10, camera_z - pt_regarde[2]/10) == 0){
                 camera_x -= pt_regarde[0]/10;
                 camera_z -= pt_regarde[2]/10;
-                fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
+                //fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
+        }
+        if(colision_cible(camera_x - pt_regarde[0]/10, camera_z - pt_regarde[2]/10) == 1){
+            teleporteur_ouvert = 1;
         }
         if(colision_teleporteur(camera_x - pt_regarde[0]/10, camera_z - pt_regarde[2]/10) == 1){
             //exit(0);
-            teleportation();
+            if(teleporteur_ouvert){
+                teleportation();
+                teleporteur_ouvert = 0;
+            }
         }
     }
     if(direction_bool[3]){
@@ -125,12 +151,18 @@ void camera(){
             if(colision_objet(camera_x - gauche_pt_regarde[0]/10, camera_z - gauche_pt_regarde[2]/10) == 0){
                 camera_x -= gauche_pt_regarde[0]/10;
                 camera_z -= gauche_pt_regarde[2]/10;
-                fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
+                //fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
+        }
+        if(colision_cible(camera_x - gauche_pt_regarde[0]/10, camera_z - gauche_pt_regarde[2]/10) == 1){
+            teleporteur_ouvert = 1;
         }
         if(colision_teleporteur(camera_x - gauche_pt_regarde[0]/10, camera_z - gauche_pt_regarde[2]/10) == 1){
             //exit(0);
-            teleportation();
+            if(teleporteur_ouvert){
+                teleportation();
+                teleporteur_ouvert = 0;
+            }
         }
         
     }
@@ -139,12 +171,18 @@ void camera(){
             if(colision_objet(camera_x + gauche_pt_regarde[0]/10, camera_z + gauche_pt_regarde[2]/10) == 0){
                 camera_x += gauche_pt_regarde[0]/10;
                 camera_z += gauche_pt_regarde[2]/10;
-                fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
+                //fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
+        }
+        if(colision_cible(camera_x + gauche_pt_regarde[0]/10, camera_z + gauche_pt_regarde[2]/10) == 1){
+            teleporteur_ouvert =1;
         }
         if(colision_teleporteur(camera_x + gauche_pt_regarde[0]/10, camera_z + gauche_pt_regarde[2]/10) == 1){
             //exit(0);
-            teleportation();
+            if(teleporteur_ouvert){
+                teleportation();
+                teleporteur_ouvert = 0;
+            }
         }
     }
 

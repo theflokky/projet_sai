@@ -52,77 +52,95 @@ objet generer_objet_a_trouver(int num_ile){
 //Fonction qui verifie si il y a collision du batiment courant avec les autres batiments de l'ile renvoie true pas co
 int conflit_generation_ville(objet o, int num_ile){
     int i;
+    float x = o.x;
+    float y =o.y;
+    float z = o.z;
 
-    for(i=1; i<tab_ile[num_ile].nb_objets; i++)
-        //Angle 1
-        //verification du x
-        if((o.x >= tab_ile[num_ile].objets[i].x && 
-            o.x <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].longueur )
-            || (o.x <= tab_ile[num_ile].objets[i].x + 5 && o.z <= tab_ile[num_ile].objets[i].z + 5)){
-            //Verification du z
-            if(o.z >= tab_ile[num_ile].objets[i].z && 
-            o.z <= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].largeur){
-                return 0;
-            } 
-        //Angle 2
-        //verification du x
-        if(o.x + o.longueur >= tab_ile[num_ile].objets[i].x && 
-            o.x + o.longueur <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].longueur){
-            //Verification du z
-            if(o.z >= tab_ile[num_ile].objets[i].z && 
-            o.z <= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].largeur){
-                return 0;
-            }        
+    if(x <= tab_ile[num_ile].objets[0].x +6 && z <= tab_ile[num_ile].objets[0].z +6){
+        return 0;
+    }
+
+    for(i=1; i < tab_ile[num_ile].nb_objets; i++){
+        float x1 = tab_ile[num_ile].objets[i].x;
+        float y1 = tab_ile[num_ile].objets[i].y;
+        float z1 = tab_ile[num_ile].objets[i].z;
+        float largeur = tab_ile[num_ile].objets[i].largeur +3;
+        float longueur = tab_ile[num_ile].objets[i].longueur +3;
+        float hauteur = tab_ile[num_ile].objets[i].hauteur;
+
+        if(x >= x1 && y >= y1 && z >= z1 && x <= x1 + largeur && y <= y1 + hauteur && z <= z1 + longueur){
+            return 0;
         }
-        //Angle 3
-        //verification du x
-       if(o.x + o.longueur >= tab_ile[num_ile].objets[i].x && 
-            o.x + o.longueur <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].longueur){
-            //Verification du z
-            if(o.z +o.largeur>= tab_ile[num_ile].objets[i].z && 
-            o.z + o.largeur<= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].largeur){
-                return 0;
-            }        
-        }     
-        //Angle 4
-        //verification du x
-        if(o.x >= tab_ile[num_ile].objets[i].x && 
-            o.x  <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].longueur){
-            //Verification du z
-            if(o.z +o.largeur>= tab_ile[num_ile].objets[i].z && 
-            o.z + o.largeur<= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].largeur){
-                return 0;
-            }        
+        if(x +largeur >= x1 && y + hauteur >= y1 && z + longueur >= z1 && x + largeur <= x1 + largeur && y + hauteur <= y1 + hauteur && z + longueur <= z1 + longueur){
+            return 0;
+        }
+        if(x + largeur >= x1 && y >= y1 && z >= z1 && x + largeur <= x1 + largeur && y <= y1 + hauteur && z <= z1 + longueur){
+            return 0;
+        }
+        if(x + largeur >= x1 && y + hauteur>= y1 && z >= z1 && x + largeur <= x1 + largeur && y + hauteur <= y1 + hauteur && z <= z1 + longueur){
+            return 0;
+        }
+        if(x >= x1 && y >= y1 && z + longueur >= z1 && x <= x1 + largeur && y <= y1 + hauteur && z + longueur<= z1 + longueur){
+            return 0;
+        }
+        if(x >= x1 && y + hauteur>= y1 && z + longueur >= z1 && x <= x1 + largeur && y + hauteur<= y1 + hauteur && z + longueur<= z1 + longueur){
+            return 0;
+        }
+        if(x >= x1 && y + hauteur>= y1 && z >= z1 && x <= x1 + largeur && y + hauteur<= y1 + hauteur && z <= z1 + longueur){
+            return 0;
+        }
+        if(x + largeur >= x1 && y >= y1 && z + longueur>= z1 && x + largeur <= x1 + largeur && y <= y1 + hauteur && z + longueur <= z1 + longueur){
+            return 0;
         }
     }
     return 1;
 }
 
 //Fonction qui verifie si il y a collision du batiment courant avec les autres batiments de l'ile renvoie true pas co
-int conflit_generation_ile(int x, int z){
+int conflit_generation_ile(int x, int y, int z){
     int i;
 
+    if(x >= LARGEUR_MONDE - 100 || y >= HAUTEUR_MONDE - 50 || z >= LONGUEUR_MONDE -100){
+        return 0;
+    }
+
     for(i=0; i<NB_ILES_MAX; i++){
+        float x1 = tab_ile[i].objets[0].x;
+        float y1 = tab_ile[i].objets[0].y;
+        float z1 = tab_ile[i].objets[0].z;
+        float largeur = tab_ile[i].objets[0].largeur + 5;
+        float longueur = tab_ile[i].objets[0].longueur +5 ;
+        float hauteur = tab_ile[i].objets[0].hauteur + 15;
+
         //ANGLE 1
-        if(x >= tab_ile[i].objets[0].x && x <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur && z >= tab_ile[i].objets[0].z 
-            && z <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
-                return 0;
+        if(x >= x1 && y >= y1 && z >= z1 && x <= x1 + largeur && y <= y1 + hauteur && z <= z1 + longueur){
+            return 0;
         }
-        //ANGLE 2
-        if(x + LARGEUR_ILE >= tab_ile[i].objets[0].x && x + LARGEUR_ILE <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur &&
-            z + LONGUEUR_ILE >= tab_ile[i].objets[0].z && z + LONGUEUR_ILE <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
-                return 0;
+        if(x +largeur >= x1 && y + hauteur >= y1 && z + longueur >= z1 && x + largeur <= x1 + largeur && y + hauteur <= y1 + hauteur && z + longueur <= z1 + longueur){
+            return 0;
         }
-        //ANGLE 3
-        if(x >= tab_ile[i].objets[0].x && x  <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur && 
-            z + LONGUEUR_ILE >= tab_ile[i].objets[0].z && z + LONGUEUR_ILE <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
-                return 0;
+        if(x + largeur >= x1 && y >= y1 && z >= z1 && x + largeur <= x1 + largeur && y <= y1 + hauteur && z <= z1 + longueur){
+            return 0;
         }
-        //ANGLE 4
-        if(x + LARGEUR_ILE >= tab_ile[i].objets[0].x && x + LARGEUR_ILE <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur 
-        && z  >= tab_ile[i].objets[0].z && z  <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
-                return 0;
+        if(x + largeur >= x1 && y + hauteur>= y1 && z >= z1 && x + largeur <= x1 + largeur && y + hauteur <= y1 + hauteur && z <= z1 + longueur){
+            return 0;
         }
+        if(x >= x1 && y >= y1 && z + longueur >= z1 && x <= x1 + largeur && y <= y1 + hauteur && z + longueur<= z1 + longueur){
+            return 0;
+        }
+        if(x >= x1 && y + hauteur>= y1 && z + longueur >= z1 && x <= x1 + largeur && y + hauteur<= y1 + hauteur && z + longueur<= z1 + longueur){
+            return 0;
+        }
+        if(x >= x1 && y + hauteur>= y1 && z >= z1 && x <= x1 + largeur && y + hauteur<= y1 + hauteur && z <= z1 + longueur){
+            return 0;
+        }
+        if(x + largeur >= x1 && y >= y1 && z + longueur>= z1 && x + largeur <= x1 + largeur && y <= y1 + hauteur && z + longueur <= z1 + longueur){
+            return 0;
+        }
+
+
+        
+        
     }
     return 1;
 }
@@ -143,6 +161,9 @@ void generer_ville(int num_ile){
     tab_ile[num_ile].nb_objets++;
 
     immeuble_courant = generer_objet_a_trouver(num_ile);
+    while(conflit_generation_ville(immeuble_courant, num_ile) != 1){
+        immeuble_courant = generer_objet_a_trouver(num_ile);
+    }
     tab_ile[num_ile].objets[2] = immeuble_courant;
     tab_ile[num_ile].nb_objets++;
     
@@ -206,7 +227,7 @@ void generer_monde(){
             y =  rand()%HAUTEUR_MONDE;
             z =  rand()%LONGUEUR_MONDE;
         }
-        while(conflit_generation_ile(x, z) != 1);
+        while(conflit_generation_ile(x,y, z) != 1);
 
         generer_ile(x, y, z);
     }

@@ -9,6 +9,8 @@ extern float pt_regarde[];
 extern ile tab_ile[];
 extern int nb_iles_generes;
 
+extern arbre_octal A;
+
 //FONCTIONS
 //Affichage building
 
@@ -82,7 +84,7 @@ void display(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45, 1, 1, 400);
+    gluPerspective(45, 1, 1, 700);
     //glFrustum(0, 0,  0 , 0, 1, 400);
         gluLookAt(camera_x, camera_y, camera_z,
              camera_x + pt_regarde[0], camera_y + pt_regarde[1], camera_z + pt_regarde[2],
@@ -95,11 +97,11 @@ void display(){
              camera_x + pt_regarde[0], camera_y + pt_regarde[1], camera_z + pt_regarde[2],
               0, 1, 0);*/
 
+    //affiche_arbre_octal(A);
+
     for(int i = 0; i< NB_ILES_MAX; i++){
         affichage_ile(i);
     }
-
-
     camera();
 
     glutSwapBuffers();
