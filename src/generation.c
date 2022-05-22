@@ -22,6 +22,22 @@ objet generer_immeuble(int num_ile){
     return immeuble;
 }
 
+//Fonction qui genere renvoie un immeuble de position et hauteur aleatoire
+objet generer_arbre(int num_ile){
+    objet immeuble;
+
+    immeuble.type = 5;
+    immeuble.x = tab_ile[num_ile].objets[0].x + rand()%90;
+    immeuble.y = tab_ile[num_ile].objets[0].y;
+    immeuble.z = tab_ile[num_ile].objets[0].z + rand()%90;
+    immeuble.hauteur = 10;
+    immeuble.largeur = 5;
+    immeuble.longueur = 5; 
+
+    
+    return immeuble;
+}
+
 objet generer_teleporteur(int num_ile){
     objet teleporteur;
 
@@ -46,6 +62,8 @@ objet generer_objet_a_trouver(int num_ile){
     o.hauteur = 1;
     o.largeur = 1;
     o.longueur = 1; 
+
+    fprintf(stdout, "POSITION OBJET : %f, %f\n", o.x, o.z);
     return o;
 }
 
@@ -169,12 +187,17 @@ void generer_ville(int num_ile){
     
 
     //Boucle for pour la generation des immeubles
-    for(i = 3; i < nb_immeubles; i++){
+    for(i = 3; i < nb_immeubles ; i++){
         //Verif Generation Collision
         
         while(conflit_generation_ville(immeuble_courant, num_ile) != 1){
-            immeuble_courant = generer_immeuble(num_ile);
-            //printf("IMMEUBLE AVANT TAB: %f, %f\n", immeuble_courant.x, immeuble_courant.z);
+            if(i%2 == 0){
+                immeuble_courant = generer_immeuble(num_ile);
+                //printf("IMMEUBLE AVANT TAB: %f, %f\n", immeuble_courant.x, immeuble_courant.z);
+            }
+            else{
+                immeuble_courant = generer_arbre(num_ile);
+            }
         }
         
         

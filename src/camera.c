@@ -60,9 +60,15 @@ int colision_objet(int x, int z){
         bat_z = tab_ile[ile_courante].objets[i].z;
 
         //fprintf(stdout, "BAT_COLISION %f, %f\n", bat_x, bat_z);
-
-        if(x +2 > bat_x && z +2 > bat_z && x < bat_x + 12 && z < bat_z +12){
-            return 1;
+        if(tab_ile[ile_courante].objets[i].type == 5){
+            if(x +2 > bat_x && z +2 > bat_z && x < bat_x + 7 && z < bat_z +7){
+                return 1;
+            }
+        }
+        else{
+            if(x +2 > bat_x && z +2 > bat_z && x < bat_x + 12 && z < bat_z +12){
+                return 1;
+            }
         }
     }
     return 0;
@@ -81,9 +87,9 @@ int colision_teleporteur(int x, int z){
 
 int colision_cible(int x, int z){
     if(x +2 > tab_ile[ile_courante].objets[2].x
-         && z +2 > tab_ile[ile_courante].objets[2].z
-         && x < tab_ile[ile_courante].objets[2].x + 12 
-         && z < tab_ile[ile_courante].objets[2].z +12){
+         && z  +2> tab_ile[ile_courante].objets[2].z
+         && x < tab_ile[ile_courante].objets[2].x + 2 
+         && z < tab_ile[ile_courante].objets[2].z + 2){
         fprintf(stdout, "\nCible Trouvé\n");
         return 1;
     }
@@ -91,11 +97,12 @@ int colision_cible(int x, int z){
 }
 
 void teleportation(){
-    if(ile_courante == NB_ILES_MAX){
+    if(ile_courante == NB_ILES_MAX -1){
         fprintf(stdout, "\n VICTOIRE GROS BG\n");
         exit(0);
     }
     else{
+        fprintf(stderr, "Ile Courante : %d", ile_courante);
         ile_courante++;
     }
 
@@ -113,7 +120,7 @@ void camera(){
             if(colision_objet(camera_x + pt_regarde[0]/10, camera_z + pt_regarde[2]/10) == 0){
                 camera_x += pt_regarde[0]/10;
                 camera_z += pt_regarde[2]/10;
-                //fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
+                fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
         }
         if(colision_cible(camera_x + pt_regarde[0]/10, camera_z + pt_regarde[2]/10) == 1){

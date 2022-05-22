@@ -75,8 +75,15 @@ void affichage_ile(int num_ile){
         float y = tab_ile[num_ile].objets[i].y;
         float z =tab_ile[num_ile].objets[i].z;
         //fprintf(stdout, "BATIMENT_AFFICHAGE : %f, %f\n", x, z);
-        building1(x, y, z, 50);
+        if(tab_ile[num_ile].objets[i].type == 5){
+            arbre(x, y, z, 10);
+        }
+        else{
+            building1(x, y, z, 50);
+        }
     }
+
+
 }
 
 //Fonction d'affichage de OpenGL

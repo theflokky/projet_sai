@@ -33,3 +33,4 @@ typedef struct Ile{
 void building1(float x, float y, float z, float heigth);
 void teleporteur(float x, float y, float z);
 void objet_a_trouver(float x, float y, float z);
+void arbre(float x, float y, float z, float heigth);

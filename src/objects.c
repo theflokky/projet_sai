@@ -174,6 +174,67 @@ void objet_a_trouver(float x, float y, float z){
 }
 
 //Fonction qui dessine un arbre 
-void tree(float x, float y){
+void arbre(float x, float y, float z, float heigth){
 
+
+    glBegin(GL_QUADS);
+        glColor3f(0.34, 0.16, 0);
+        glVertex3f(x +2, y+ 2, z+2);
+        glVertex3f(x+ 3, y+2, z+2);
+        glVertex3f(x +3, y, z+2);
+        glVertex3f(x +2 , y, z+2);
+
+        glVertex3f(x +2, y+ 2, z+3);
+        glVertex3f(x+ 3, y+2, z+3);
+        glVertex3f(x +3, y, z+3);
+        glVertex3f(x +2 , y, z+3);
+
+        glColor3f(0.27, 0.12, 0);
+        glVertex3f(x +3, y+ 2, z+2);
+        glVertex3f(x+ 3, y+2, z+3);
+        glVertex3f(x +3, y, z+3);
+        glVertex3f(x +3 , y, z+2);
+
+        glVertex3f(x +2, y+ 2, z+2);
+        glVertex3f(x+ 2, y+2, z+3);
+        glVertex3f(x +2, y, z+3);
+        glVertex3f(x +2 , y, z+2);
+
+        glColor3f(0.3, 0.32, 0.15);
+        //Generation de la face du dessus
+        glVertex3f(x, y+ 10, z);
+        glVertex3f(x+5, y+10, z);
+        glVertex3f(x+5, y+10, z+5);
+        glVertex3f(x, y+10, z+5);
+
+        glVertex3f(x, y+ 2, z);
+        glVertex3f(x+5, y+2, z);
+        glVertex3f(x+5, y+2, z+5);
+        glVertex3f(x, y+2, z+5);
+
+        //Faces cotes
+        glVertex3f(x, y+10, z);
+        glVertex3f(x+5, y+10, z);
+        glVertex3f(x+5, y+2, z);
+        glVertex3f(x, y+2, z);
+
+        glVertex3f(x, y+10, z);
+        glVertex3f(x, y+10, z+5);
+        glVertex3f(x, y+2, z+5);
+        glVertex3f(x, y+2, z);
+
+        glVertex3f(x, y+10, z+5);
+        glVertex3f(x+5, y+10, z+5);
+        glVertex3f(x+5, y+2, z+5);
+        glVertex3f(x, y+2, z+5);
+
+        glVertex3f(x+5, y+10, z);
+        glVertex3f(x+5, y+10, z+5);
+        glVertex3f(x+5, y+2, z+5);
+        glVertex3f(x+5, y+2, z);
+
+
+
+
+    glEnd();
 }
