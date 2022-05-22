@@ -22,52 +22,53 @@ void affichage_ile(int num_ile){
     float largeur =tab_ile[num_ile].objets[0].largeur;
     float hauteur =tab_ile[num_ile].objets[0].hauteur;
 
-    printf("ILE AFFICHAGE X: %f, %f\n", x, longueur);
-    printf("ILE AFFICHAGE Z: %f, %f\n", z, largeur);
-    printf("ILE AFFICHAGE Y: %f, %f\n", y, hauteur);
+    //printf("ILE AFFICHAGE X: %f, %f\n", x, longueur);
+    //printf("ILE AFFICHAGE Z: %f, %f\n", z, largeur);
+    //printf("ILE AFFICHAGE Y: %f, %f\n", y, hauteur);
 
     glBegin(GL_QUADS);
         //Generation d'un sol de test
-        glColor3f(0.5, 0.5, 0.5);
+        glColor3f(0.3137, 0.349, 0.3333);
         glVertex3f(x , y, z);
         glVertex3f(x+longueur, y, z);
         glVertex3f(x+longueur, y, z+largeur);
         glVertex3f(x, y, z+largeur);
 
-        glColor3f(0.5, 0.5, 0.5);
+        glColor3f(0.3451, 0.1608, 0);
         glVertex3f(x , y-10, z);
         glVertex3f(x+longueur, y-10, z);
         glVertex3f(x+longueur, y-10, z+largeur);
         glVertex3f(x, y-10, z+largeur);
 
-        glColor3f(0.5, 0.5, 0.5);
+        
         glVertex3f(x , y, z);
         glVertex3f(x , y-10, z);
         glVertex3f(x + longueur , y-10, z);
         glVertex3f(x + longueur, y, z);
 
-        glColor3f(0.5, 0.5, 0.5);
+        
         glVertex3f(x , y, z);
         glVertex3f(x , y-10, z);
         glVertex3f(x  , y-10, z + largeur);
         glVertex3f(x , y, z +largeur);
 
-        glColor3f(0.5, 0.5, 0.5);
+        
         glVertex3f(x +longueur, y, z);
         glVertex3f(x +longueur, y-10, z);
         glVertex3f(x + longueur , y-10, z+largeur);
         glVertex3f(x + longueur, y, z+largeur);
 
-        glColor3f(0.5, 0.5, 0.5);
+        
         glVertex3f(x , y, z+largeur);
         glVertex3f(x , y-10, z+largeur);
         glVertex3f(x + longueur , y-10, z+largeur);
         glVertex3f(x + longueur, y, z+largeur);
     glEnd();
 
+    objet_a_trouver(tab_ile[num_ile].objets[2].x, tab_ile[num_ile].objets[2].y, tab_ile[num_ile].objets[2].z);
     teleporteur(tab_ile[num_ile].objets[1].x, tab_ile[num_ile].objets[1].y, tab_ile[num_ile].objets[1].z);
 
-    for(i=2; i < tab_ile[num_ile].nb_objets; i++){
+    for(i=3; i < tab_ile[num_ile].nb_objets; i++){
         float x = tab_ile[num_ile].objets[i].x;
         float y = tab_ile[num_ile].objets[i].y;
         float z =tab_ile[num_ile].objets[i].z;

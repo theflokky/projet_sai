@@ -36,6 +36,19 @@ objet generer_teleporteur(int num_ile){
     return teleporteur;
 }
 
+objet generer_objet_a_trouver(int num_ile){
+    objet o;
+
+    o.type = 4;
+    o.x = tab_ile[num_ile].objets[0].x +rand()%80;
+    o.y = tab_ile[num_ile].objets[0].y;
+    o.z = tab_ile[num_ile].objets[0].z + rand()%80;
+    o.hauteur = 1;
+    o.largeur = 1;
+    o.longueur = 1; 
+    return o;
+}
+
 //Fonction qui verifie si il y a collision du batiment courant avec les autres batiments de l'ile renvoie true pas co
 int conflit_generation_ville(objet o, int num_ile){
     int i;
@@ -43,40 +56,41 @@ int conflit_generation_ville(objet o, int num_ile){
     for(i=1; i<tab_ile[num_ile].nb_objets; i++)
         //Angle 1
         //verification du x
-        if(o.x >= tab_ile[num_ile].objets[i].x && 
-            o.x <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].largeur){
+        if((o.x >= tab_ile[num_ile].objets[i].x && 
+            o.x <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].longueur )
+            || (o.x <= tab_ile[num_ile].objets[i].x + 5 && o.z <= tab_ile[num_ile].objets[i].z + 5)){
             //Verification du z
             if(o.z >= tab_ile[num_ile].objets[i].z && 
-            o.z <= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].longueur){
+            o.z <= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].largeur){
                 return 0;
             } 
         //Angle 2
         //verification du x
-        if(o.x + o.largeur >= tab_ile[num_ile].objets[i].x && 
-            o.x + o.largeur <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].largeur){
+        if(o.x + o.longueur >= tab_ile[num_ile].objets[i].x && 
+            o.x + o.longueur <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].longueur){
             //Verification du z
             if(o.z >= tab_ile[num_ile].objets[i].z && 
-            o.z <= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].longueur){
+            o.z <= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].largeur){
                 return 0;
             }        
         }
         //Angle 3
         //verification du x
-       if(o.x + o.largeur >= tab_ile[num_ile].objets[i].x && 
-            o.x + o.largeur <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].largeur){
+       if(o.x + o.longueur >= tab_ile[num_ile].objets[i].x && 
+            o.x + o.longueur <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].longueur){
             //Verification du z
-            if(o.z +o.longueur>= tab_ile[num_ile].objets[i].z && 
-            o.z + o.longueur<= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].longueur){
+            if(o.z +o.largeur>= tab_ile[num_ile].objets[i].z && 
+            o.z + o.largeur<= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].largeur){
                 return 0;
             }        
         }     
         //Angle 4
         //verification du x
         if(o.x >= tab_ile[num_ile].objets[i].x && 
-            o.x  <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].largeur){
+            o.x  <= tab_ile[num_ile].objets[i].x + tab_ile[num_ile].objets[i].longueur){
             //Verification du z
-            if(o.z +o.longueur>= tab_ile[num_ile].objets[i].z && 
-            o.z + o.longueur<= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].longueur){
+            if(o.z +o.largeur>= tab_ile[num_ile].objets[i].z && 
+            o.z + o.largeur<= tab_ile[num_ile].objets[i].z + tab_ile[num_ile].objets[i].largeur){
                 return 0;
             }        
         }
@@ -90,28 +104,24 @@ int conflit_generation_ile(int x, int z){
 
     for(i=0; i<NB_ILES_MAX; i++){
         //ANGLE 1
-        if(x >= tab_ile[i].objets[0].x && x <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur){
-            if(z >= tab_ile[i].objets[0].z && z <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
+        if(x >= tab_ile[i].objets[0].x && x <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur && z >= tab_ile[i].objets[0].z 
+            && z <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
                 return 0;
-            }
         }
         //ANGLE 2
-        if(x + LARGEUR_ILE >= tab_ile[i].objets[0].x && x + LARGEUR_ILE <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur){
-            if(z + LONGUEUR_ILE >= tab_ile[i].objets[0].z && x + LONGUEUR_ILE <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
+        if(x + LARGEUR_ILE >= tab_ile[i].objets[0].x && x + LARGEUR_ILE <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur &&
+            z + LONGUEUR_ILE >= tab_ile[i].objets[0].z && z + LONGUEUR_ILE <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
                 return 0;
-            }
         }
         //ANGLE 3
-        if(x >= tab_ile[i].objets[0].x && x  <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur){
-            if(z + LONGUEUR_ILE >= tab_ile[i].objets[0].z && x + LONGUEUR_ILE <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
+        if(x >= tab_ile[i].objets[0].x && x  <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur && 
+            z + LONGUEUR_ILE >= tab_ile[i].objets[0].z && z + LONGUEUR_ILE <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
                 return 0;
-            }
         }
         //ANGLE 4
-        if(x + LARGEUR_ILE >= tab_ile[i].objets[0].x && x + LARGEUR_ILE <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur){
-            if(z  >= tab_ile[i].objets[0].z && x  <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
+        if(x + LARGEUR_ILE >= tab_ile[i].objets[0].x && x + LARGEUR_ILE <= tab_ile[i].objets[0].x + tab_ile[i].objets[0].largeur 
+        && z  >= tab_ile[i].objets[0].z && z  <= tab_ile[i].objets[0].z + tab_ile[i].objets[0].longueur){
                 return 0;
-            }
         }
     }
     return 1;
@@ -126,15 +136,19 @@ void generer_ville(int num_ile){
     objet immeuble_courant;
 
     //On tire aléatoirement le nombre de building (Bornes a confirmer) POUR LE MOMENT FIXE
-    nb_immeubles = 10;
+    nb_immeubles = NB_IMMEUBLE;
 
     immeuble_courant = generer_teleporteur(num_ile);
     tab_ile[num_ile].objets[1] = immeuble_courant;
     tab_ile[num_ile].nb_objets++;
+
+    immeuble_courant = generer_objet_a_trouver(num_ile);
+    tab_ile[num_ile].objets[2] = immeuble_courant;
+    tab_ile[num_ile].nb_objets++;
     
 
     //Boucle for pour la generation des immeubles
-    for(i = 2; i < nb_immeubles; i++){
+    for(i = 3; i < nb_immeubles; i++){
         //Verif Generation Collision
         
         while(conflit_generation_ville(immeuble_courant, num_ile) != 1){
@@ -188,9 +202,9 @@ void generer_monde(){
         //Verification Conflit
         do{
             //Tirage aléatoire des tailles et position de l'ile
-            x =  rand()%400; 
-            y =  rand()%200;
-            z =  rand()%400;
+            x =  rand()%LARGEUR_MONDE; 
+            y =  rand()%HAUTEUR_MONDE;
+            z =  rand()%LONGUEUR_MONDE;
         }
         while(conflit_generation_ile(x, z) != 1);
 

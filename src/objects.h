@@ -13,7 +13,7 @@ typedef struct Objet{
     /*TYPES D'OBJETS
         1 : ILES
         2 : BUILDING 
-        3 : */
+        3 : TELEPORTEUR*/
     int type; 
     float x;
     float y;
@@ -32,3 +32,4 @@ typedef struct Ile{
 //FONCTIONS
 void building1(float x, float y, float z, float heigth);
 void teleporteur(float x, float y, float z);
+void objet_a_trouver(float x, float y, float z);

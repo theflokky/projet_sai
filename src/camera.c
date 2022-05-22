@@ -31,16 +31,16 @@ int direction_bool[4] = {0, 0, 0, 0};
 int colision_ile(int x, int z){
     float longueur = tab_ile[ile_courante].objets[0].x + LONGUEUR_ILE;
     float largeur = tab_ile[ile_courante].objets[0].z + LARGEUR_ILE;
-    if(x -2< tab_ile[ile_courante].objets[0].x){
+    if(x -1< tab_ile[ile_courante].objets[0].x){
         return 1;
     }
-    if(z -2< tab_ile[ile_courante].objets[0].z){
+    if(z -1< tab_ile[ile_courante].objets[0].z){
             return 1;
     }
-    if(x +2> longueur){
+    if(x +1> longueur){
         return 1;
     }
-    if(z +2> largeur){
+    if(z +1> largeur){
         return 1;
     }
 
@@ -53,7 +53,7 @@ int colision_objet(int x, int z){
     float bat_x;
     float bat_z;
 
-    for(int i = 2; i<tab_ile[ile_courante].nb_objets; i++){
+    for(int i = 3; i<tab_ile[ile_courante].nb_objets; i++){
         bat_x = tab_ile[ile_courante].objets[i].x;
         bat_z = tab_ile[ile_courante].objets[i].z;
 
@@ -95,54 +95,54 @@ void camera(){
     //Gestion des mouvemetns de clavier
     //fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
     if(direction_bool[0]){
-        if(colision_ile(camera_x + pt_regarde[0]/20, camera_z + pt_regarde[2]/20) == 0){
-            if(colision_objet(camera_x + pt_regarde[0]/20, camera_z + pt_regarde[2]/20) == 0){
-                camera_x += pt_regarde[0]/20;
-                camera_z += pt_regarde[2]/20;
+        if(colision_ile(camera_x + pt_regarde[0]/10, camera_z + pt_regarde[2]/10) == 0){
+            if(colision_objet(camera_x + pt_regarde[0]/10, camera_z + pt_regarde[2]/10) == 0){
+                camera_x += pt_regarde[0]/10;
+                camera_z += pt_regarde[2]/10;
                 fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
         }
-        if(colision_teleporteur(camera_x + pt_regarde[0]/20, camera_z + pt_regarde[2]/20) == 1){
+        if(colision_teleporteur(camera_x + pt_regarde[0]/10, camera_z + pt_regarde[2]/10) == 1){
             //exit(0);
             teleportation();
         }
     }
     if(direction_bool[1]){
-        if(colision_ile(camera_x - pt_regarde[0]/20, camera_z - pt_regarde[2]/20) == 0){
-            if(colision_objet(camera_x - pt_regarde[0]/20, camera_z - pt_regarde[2]/20) == 0){
-                camera_x -= pt_regarde[0]/20;
-                camera_z -= pt_regarde[2]/20;
+        if(colision_ile(camera_x - pt_regarde[0]/10, camera_z - pt_regarde[2]/10) == 0){
+            if(colision_objet(camera_x - pt_regarde[0]/10, camera_z - pt_regarde[2]/10) == 0){
+                camera_x -= pt_regarde[0]/10;
+                camera_z -= pt_regarde[2]/10;
                 fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
         }
-        if(colision_teleporteur(camera_x - pt_regarde[0]/20, camera_z - pt_regarde[2]/20) == 1){
+        if(colision_teleporteur(camera_x - pt_regarde[0]/10, camera_z - pt_regarde[2]/10) == 1){
             //exit(0);
             teleportation();
         }
     }
     if(direction_bool[3]){
-        if(colision_ile(camera_x - gauche_pt_regarde[0]/20, camera_z - gauche_pt_regarde[2]/20) == 0){
-            if(colision_objet(camera_x - gauche_pt_regarde[0]/20, camera_z - gauche_pt_regarde[2]/20) == 0){
-                camera_x -= gauche_pt_regarde[0]/20;
-                camera_z -= gauche_pt_regarde[2]/20;
+        if(colision_ile(camera_x - gauche_pt_regarde[0]/10, camera_z - gauche_pt_regarde[2]/10) == 0){
+            if(colision_objet(camera_x - gauche_pt_regarde[0]/10, camera_z - gauche_pt_regarde[2]/10) == 0){
+                camera_x -= gauche_pt_regarde[0]/10;
+                camera_z -= gauche_pt_regarde[2]/10;
                 fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
         }
-        if(colision_teleporteur(camera_x - gauche_pt_regarde[0]/20, camera_z - gauche_pt_regarde[2]/20) == 1){
+        if(colision_teleporteur(camera_x - gauche_pt_regarde[0]/10, camera_z - gauche_pt_regarde[2]/10) == 1){
             //exit(0);
             teleportation();
         }
         
     }
     if(direction_bool[2]){
-        if(colision_ile(camera_x + gauche_pt_regarde[0]/20, camera_z + gauche_pt_regarde[2]/20) == 0){
-            if(colision_objet(camera_x + gauche_pt_regarde[0]/20, camera_z + gauche_pt_regarde[2]/20) == 0){
-                camera_x += gauche_pt_regarde[0]/20;
-                camera_z += gauche_pt_regarde[2]/20;
+        if(colision_ile(camera_x + gauche_pt_regarde[0]/10, camera_z + gauche_pt_regarde[2]/10) == 0){
+            if(colision_objet(camera_x + gauche_pt_regarde[0]/10, camera_z + gauche_pt_regarde[2]/10) == 0){
+                camera_x += gauche_pt_regarde[0]/10;
+                camera_z += gauche_pt_regarde[2]/10;
                 fprintf(stdout, "POSITION CAMERA : %f, %f, %f\n", camera_x, camera_y, camera_z);
             }
         }
-        if(colision_teleporteur(camera_x + gauche_pt_regarde[0]/20, camera_z + gauche_pt_regarde[2]/20) == 1){
+        if(colision_teleporteur(camera_x + gauche_pt_regarde[0]/10, camera_z + gauche_pt_regarde[2]/10) == 1){
             //exit(0);
             teleportation();
         }

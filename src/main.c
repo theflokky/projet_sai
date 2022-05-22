@@ -6,10 +6,11 @@
 //MAIN DU PROJET DE SAI
 int main(int argc, char const *argv[]){
     //Initialisation de Glut
+    srand(time(NULL));
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(800, 800);
-    glutInitWindowPosition(100, 100);
+    glutInitWindowPosition(2200, 100);
 
     //Creation de la fenetre du jeu
     glutCreateWindow("Projet SAI");
@@ -22,6 +23,7 @@ int main(int argc, char const *argv[]){
     //Postionne le pointeur de souris au milieu de la fenetre
     glutWarpPointer(800/2, 800/2);
     glClearColor(0.4667, 0.7098, 0.9961, 1);
+    //glClearColor(0.0588, 0.0196, 0.4196, 0.4);
 
     //Definition des fonctions pour OpenGL
     glutDisplayFunc(display);
@@ -32,7 +34,6 @@ int main(int argc, char const *argv[]){
 
     //GENERATION
     generer_monde();
-    srand(time(NULL));
     glutMainLoop();
 
 
