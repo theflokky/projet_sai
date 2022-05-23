@@ -104,7 +104,7 @@ void teleportation(){
         victoire =1;
     }
     else{
-        fprintf(stderr, "Ile Courante : %d", ile_courante);
+        //fprintf(stderr, "Ile Courante : %d", ile_courante);
         ile_courante++;
         camera_x = tab_ile[ile_courante].objets[0].x + 4;
         camera_y = tab_ile[ile_courante].objets[0].y +2;

@@ -241,7 +241,6 @@ void generer_monde(){
     float x, y, z;
     int i;
 
-
     generer_ile(0,0 ,0);
     //Boucle de génération
     for(i = 1; i < NB_ILES_MAX; i++){
@@ -256,7 +255,6 @@ void generer_monde(){
 
         generer_ile(x, y, z);
     }
-    
 }
 
 

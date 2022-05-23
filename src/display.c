@@ -6,6 +6,7 @@ extern float camera_y;
 extern float camera_z;
 extern float pt_regarde[];
 extern int affiche_hitbox;
+extern int affiche_arbre;
 
 extern ile tab_ile[];
 extern int nb_iles_generes;
@@ -81,13 +82,13 @@ void affichage_ile(int num_ile){
         glVertex3f(x  , y-10, z + largeur);
         glVertex3f(x , y, z +largeur);
 
-        glColor3f(0.30, 0.12, 0);
+        glColor3f(0.3451, 0.1608, 0);
         glVertex3f(x +longueur, y, z);
         glVertex3f(x +longueur, y-10, z);
         glVertex3f(x + longueur , y-10, z+largeur);
         glVertex3f(x + longueur, y, z+largeur);
 
-        glColor3f(0.3451, 0.1608, 0);
+        glColor3f(0.30, 0.12, 0);
         glVertex3f(x , y, z+largeur);
         glVertex3f(x , y-10, z+largeur);
         glVertex3f(x + longueur , y-10, z+largeur);
@@ -131,7 +132,9 @@ void display(){
              camera_x + pt_regarde[0], camera_y + pt_regarde[1], camera_z + pt_regarde[2],
               0, 1, 0);*/
 
-    //affiche_arbre_octal(A);
+    if(affiche_arbre){
+        affiche_arbre_octal(A);
+    }
 
     for(int i = 0; i< NB_ILES_MAX; i++){
         affichage_ile(i);

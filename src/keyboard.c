@@ -2,6 +2,7 @@
 
 extern int direction_bool[];
 int affiche_hitbox = 0;
+int affiche_arbre = 0;
 
 //Fonction qui gere quand on appuie sur une touche
 void keyboard(unsigned char key, int x, int y){
@@ -39,7 +40,13 @@ void keyboard(unsigned char key, int x, int y){
         
         case 'v':
             affiche_hitbox = 0;
+            affiche_arbre =0;
         break;
+
+        case 'a':
+            affiche_arbre = 1;
+            break;
+
 
         
 
