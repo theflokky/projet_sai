@@ -26,7 +26,7 @@ void affichage_ile(int num_ile){
     float z =tab_ile[num_ile].objets[0].z;
     float longueur =tab_ile[num_ile].objets[0].longueur;
     float largeur =tab_ile[num_ile].objets[0].largeur;
-    float hauteur =tab_ile[num_ile].objets[0].hauteur;
+    //float hauteur =tab_ile[num_ile].objets[0].hauteur;
 
         if(affiche_hitbox){
         glBegin(GL_LINE_STRIP);

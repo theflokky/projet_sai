@@ -6,13 +6,13 @@
 arbre_octal A;
 
 //MAIN DU PROJET DE SAI
-int main(int argc, char const *argv[]){
+int main(int argc, char *argv[]){
     //Initialisation de Glut
     srand(time(NULL));
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
     glutInitWindowSize(800, 800);
-    glutInitWindowPosition(2200, 100);
+    glutInitWindowPosition(100, 100);
 
     //Creation de la fenetre du jeu
     glutCreateWindow("Projet SAI");
