@@ -1,6 +1,7 @@
 #include "keyboard.h"
 
 extern int direction_bool[];
+int affiche_hitbox = 0;
 
 //Fonction qui gere quand on appuie sur une touche
 void keyboard(unsigned char key, int x, int y){
@@ -27,9 +28,20 @@ void keyboard(unsigned char key, int x, int y){
         break;
 
         //On quitte le jeu
-        case 'p':
+        case 'e':
             exit(0);
         break;
+
+        case 'c':
+            affiche_hitbox = 1;
+        break;
+
+        
+        case 'v':
+            affiche_hitbox = 0;
+        break;
+
+        
 
         default:
         break;

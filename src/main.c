@@ -36,7 +36,7 @@ int main(int argc, char const *argv[]){
 
     //GENERATION
     generer_monde();
-    A = genere_arbre_octal(4, 0, HAUTEUR_MONDE, 0, LARGEUR_MONDE, 0, LONGUEUR_MONDE);
+    A = genere_arbre_octal(3, 0, HAUTEUR_MONDE, 0, LARGEUR_MONDE, 0, LONGUEUR_MONDE);
 
     fprintf(stderr, "Arbre creer et initialise\n");
     

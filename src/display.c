@@ -5,6 +5,7 @@ extern float camera_x;
 extern float camera_y;
 extern float camera_z;
 extern float pt_regarde[];
+extern int affiche_hitbox;
 
 extern ile tab_ile[];
 extern int nb_iles_generes;
@@ -16,6 +17,8 @@ extern arbre_octal A;
 
 //Fonction qui affiche une ile complete PROVISOIRE
 void affichage_ile(int num_ile){
+    float heigth =100;
+
     int i;
     float x = tab_ile[num_ile].objets[0].x;
     float y = tab_ile[num_ile].objets[0].y;
@@ -23,6 +26,30 @@ void affichage_ile(int num_ile){
     float longueur =tab_ile[num_ile].objets[0].longueur;
     float largeur =tab_ile[num_ile].objets[0].largeur;
     float hauteur =tab_ile[num_ile].objets[0].hauteur;
+
+        if(affiche_hitbox){
+        glBegin(GL_LINE_STRIP);
+            glColor3f(0, 0, 1);
+            glVertex3f(x+1, y, z+1);
+            glVertex3f(x+1, y + heigth, z+1);
+
+            glVertex3f(x+largeur-1, y + heigth, z+1);
+            glVertex3f(x+largeur-1, y, z+1);
+            glVertex3f(x+largeur-1, y + heigth, z+1);
+
+            glVertex3f(x+largeur-1, y + heigth, z+longueur-1);
+            glVertex3f(x+largeur-1, y, z+longueur-1);
+            glVertex3f(x+largeur-1, y + heigth, z+longueur-1);
+
+            glVertex3f(x+1, y + heigth, z+longueur-1);
+            glVertex3f(x+1, y, z+longueur-1);
+            glVertex3f(x+1, y + heigth, z+longueur-1);
+
+            glVertex3f(x+1, y + heigth, z+1);
+            
+
+        glEnd();    
+    }
 
     //printf("ILE AFFICHAGE X: %f, %f\n", x, longueur);
     //printf("ILE AFFICHAGE Z: %f, %f\n", z, largeur);
@@ -36,31 +63,31 @@ void affichage_ile(int num_ile){
         glVertex3f(x+longueur, y, z+largeur);
         glVertex3f(x, y, z+largeur);
 
-        glColor3f(0.3451, 0.1608, 0);
+        glColor3f(0.26, 0.08, 0);
         glVertex3f(x , y-10, z);
         glVertex3f(x+longueur, y-10, z);
         glVertex3f(x+longueur, y-10, z+largeur);
         glVertex3f(x, y-10, z+largeur);
 
-        
+        glColor3f(0.30, 0.12, 0);
         glVertex3f(x , y, z);
         glVertex3f(x , y-10, z);
         glVertex3f(x + longueur , y-10, z);
         glVertex3f(x + longueur, y, z);
 
-        
+        glColor3f(0.3451, 0.1608, 0);
         glVertex3f(x , y, z);
         glVertex3f(x , y-10, z);
         glVertex3f(x  , y-10, z + largeur);
         glVertex3f(x , y, z +largeur);
 
-        
+        glColor3f(0.30, 0.12, 0);
         glVertex3f(x +longueur, y, z);
         glVertex3f(x +longueur, y-10, z);
         glVertex3f(x + longueur , y-10, z+largeur);
         glVertex3f(x + longueur, y, z+largeur);
 
-        
+        glColor3f(0.3451, 0.1608, 0);
         glVertex3f(x , y, z+largeur);
         glVertex3f(x , y-10, z+largeur);
         glVertex3f(x + longueur , y-10, z+largeur);
@@ -70,7 +97,7 @@ void affichage_ile(int num_ile){
     objet_a_trouver(tab_ile[num_ile].objets[2].x, tab_ile[num_ile].objets[2].y, tab_ile[num_ile].objets[2].z);
     teleporteur(tab_ile[num_ile].objets[1].x, tab_ile[num_ile].objets[1].y, tab_ile[num_ile].objets[1].z);
 
-    for(i=3; i < tab_ile[num_ile].nb_objets; i++){
+    for(i=3; i < tab_ile[num_ile].nb_objets -1 ; i++){
         float x = tab_ile[num_ile].objets[i].x;
         float y = tab_ile[num_ile].objets[i].y;
         float z =tab_ile[num_ile].objets[i].z;

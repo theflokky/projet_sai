@@ -63,7 +63,7 @@ objet generer_objet_a_trouver(int num_ile){
     o.largeur = 1;
     o.longueur = 1; 
 
-    fprintf(stdout, "POSITION OBJET : %f, %f\n", o.x, o.z);
+    //fprintf(stdout, "POSITION OBJET : %f, %f\n", o.x, o.z);
     return o;
 }
 
@@ -74,16 +74,17 @@ int conflit_generation_ville(objet o, int num_ile){
     float y =o.y;
     float z = o.z;
 
-    if(x <= tab_ile[num_ile].objets[0].x +6 && z <= tab_ile[num_ile].objets[0].z +6){
+    if((x <= (tab_ile[num_ile].objets[0].x + 6)) && (z <= (tab_ile[num_ile].objets[0].z + 6))){
         return 0;
     }
+    //fprintf(stderr, "POSITION TESTE %f %f\n", x, z);
 
     for(i=1; i < tab_ile[num_ile].nb_objets; i++){
         float x1 = tab_ile[num_ile].objets[i].x;
         float y1 = tab_ile[num_ile].objets[i].y;
         float z1 = tab_ile[num_ile].objets[i].z;
-        float largeur = tab_ile[num_ile].objets[i].largeur +3;
-        float longueur = tab_ile[num_ile].objets[i].longueur +3;
+        float largeur = tab_ile[num_ile].objets[i].largeur +5;
+        float longueur = tab_ile[num_ile].objets[i].longueur +5;
         float hauteur = tab_ile[num_ile].objets[i].hauteur;
 
         if(x >= x1 && y >= y1 && z >= z1 && x <= x1 + largeur && y <= y1 + hauteur && z <= z1 + longueur){
@@ -178,18 +179,13 @@ void generer_ville(int num_ile){
     tab_ile[num_ile].objets[1] = immeuble_courant;
     tab_ile[num_ile].nb_objets++;
 
-    immeuble_courant = generer_objet_a_trouver(num_ile);
-    while(conflit_generation_ville(immeuble_courant, num_ile) != 1){
-        immeuble_courant = generer_objet_a_trouver(num_ile);
-    }
     tab_ile[num_ile].objets[2] = immeuble_courant;
     tab_ile[num_ile].nb_objets++;
     
-
+    immeuble_courant = generer_immeuble(num_ile);
     //Boucle for pour la generation des immeubles
     for(i = 3; i < nb_immeubles ; i++){
         //Verif Generation Collision
-        
         while(conflit_generation_ville(immeuble_courant, num_ile) != 1){
             if(i%2 == 0){
                 immeuble_courant = generer_immeuble(num_ile);
@@ -200,11 +196,17 @@ void generer_ville(int num_ile){
             }
         }
         
-        
+        //printf("IMMEUBLE Généré: %f, %f\n", immeuble_courant.x, immeuble_courant.z);
         tab_ile[num_ile].objets[i] = immeuble_courant;
         tab_ile[num_ile].nb_objets++;
         //printf("IMMEUBLE APRES TAB: %f, %f\n" ,tab_ile[num_ile].objets[i].x, tab_ile[num_ile].objets[i].z);
     }
+    immeuble_courant = generer_objet_a_trouver(num_ile);
+    while(conflit_generation_ville(immeuble_courant, num_ile) != 1){
+        immeuble_courant = generer_objet_a_trouver(num_ile);
+    }
+    tab_ile[num_ile].objets[2] = immeuble_courant;
+    tab_ile[num_ile].nb_objets++;
 }
 
 //Fonction qui genere une ile complete avec objets
