@@ -1,0 +1,16 @@
+//CONSTANTES
+#define HEIGTH 800
+#define WIDTH 800
+#define TO_RADIAN 3.14/180.0
+#define NB_OBJETS_MAX 50
+#define NB_ILES_MAX 12
+
+#define LARGEUR_MONDE 400
+#define LONGUEUR_MONDE 400
+#define HAUTEUR_MONDE 400
+
+#define LARGEUR_ILE 100
+#define LONGUEUR_ILE 100
+#define HAUTEUR_ILE 100
+
+#define NB_IMMEUBLE 25
